@@ -5,7 +5,7 @@ const UserListFrom = ({userFormSearchValue, setUserFormSearchValue, onInputChang
     return (
         <div>
         <div >Current userFormSearchValue o_0: ---> <strong>{userFormSearchValue}</strong></div>
-        <input type="text" onChange={(e) => setUserFormSearchValue(e.target.value)} value={userFormSearchValue} />
+        <input type="text" onChange={(e) => {setUserFormSearchValue(e.target.value); onInputChanged(e);}} value={userFormSearchValue} />
         <input type="button" value="search" onClick={onFormSubmitted} />
         <input type="button" value="reset" onClick={onFormRestored} />
         </div>

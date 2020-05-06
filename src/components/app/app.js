@@ -13,11 +13,6 @@ const App = () => {
         loadUser();
     }, []);
 
-    useEffect(function updateItem(e){
-        console.log('useEffect.updateItem');
-        setUserFormSearchValue(v);
-    });
-
     const loadUser = () => {
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
@@ -30,7 +25,9 @@ const App = () => {
     const onInputChanged = (e) => {
         const v = e.target.value;
         console.log(v);
-        setUserFormSearchValue(v);
+        //setUserFormSearchValue(v);
+        console.log(userFormSearchValue);
+        onFormSubmitted();
         setTimeout(() => {
             console.log(userFormSearchValue);
             onFormSubmitted();
@@ -40,7 +37,7 @@ const App = () => {
     const onFormSubmitted = () => {
         let v =  userFormSearchValue;
         console.log(v);
-        if (userFormSearchValue) {
+        if (v) {
             v = v.toLowerCase();
             const users = baseState.users
             const a = users.filter((user) => {
@@ -51,9 +48,8 @@ const App = () => {
     }
 
     const onFormRestored = () => {
-        setUserFormSearchValue('');
         setUsers(baseState.users);
-        onFormSubmitted();
+        setUserFormSearchValue('');
     }
 
     return (
